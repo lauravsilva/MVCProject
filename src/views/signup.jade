@@ -1,0 +1,49 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+    nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a.active(href='/display') Home
+          ul.nav.navbar-nav.pull-right
+            li
+              a(href='/login') Log In
+
+      
+    .container
+      h1 Sign Up
+      form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
+        .form-group
+          label(for="name") Name: 
+          input.form-control#user(type="text", name="name", placeholder="Name")
+        .form-group
+          label(for="username") Username: 
+          input.form-control#user(type="text", name="username", placeholder="Username")
+        .form-group
+          label(for="pass") Password: 
+          input.form-control#pass(type="password", name="pass", placeholder="Password")
+        .form-group
+          label(for="pass2") Password: 
+          input.form-control#pass2(type="password", name="pass2", placeholder="Retype password")
+        input(type="hidden", name="_csrf", value="#{csrfToken}")
+        button.btn.btn-default#signupSubmit(type='formSubmit') Sign up
+      
+    
+  
+  #domoMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#domo(src="assets/img/domo.png", alt="domo")
+block scripts
+        script(src="/assets/client.js")

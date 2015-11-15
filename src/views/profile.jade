@@ -1,0 +1,36 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+    nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a.active(href='/display') Home
+          ul.nav.navbar-nav.pull-right
+            li
+              a(href='/profile') Profile
+            li
+              a(href="/logout") Log out
+
+      
+    .container
+      section#profile
+        h1 Name: #{search.name}
+        h1 Username: #{search.username}
+  
+//-  #domoMessage
+//-    img#speech(src="/assets/img/speech.png", alt="speech box")
+//-    h3
+//-      span#errorMessage
+//-    img#domo(src="assets/img/domo.png", alt="domo")
+block scripts
+        script(src="/assets/maker.js")
