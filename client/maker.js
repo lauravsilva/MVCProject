@@ -42,12 +42,12 @@ $(document).ready(function() {
         return false;
     });
 
-//    $("#removeTaskSubmit").on("click", function(e) {
-//        e.preventDefault();
-//
-//        sendAjax($("#taskForm").attr("action"), $("#taskForm").serialize());
-//
-//        return false;
-//    });
+    $("#removeTaskSubmit").on("click", function(e) {
+        e.preventDefault();
+
+        sendAjax($("#taskForm").attr("action"), $("#taskForm").serialize());
+
+        return false;
+    });
 
 });

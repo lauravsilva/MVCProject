@@ -53,10 +53,11 @@ var makeTask = function(req, res){
 
 };
 
-//var removeTask = function(req, res){
-//    
-//};
+var removeTask = function(req, res){
+    
+};
 
 module.exports.makerPage = makerPage;
 module.exports.make = makeTask;
+module.exports.remove = removeTask;
 module.exports.displayPage = displayPage;
