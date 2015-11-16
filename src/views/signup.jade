@@ -21,14 +21,18 @@ block body
 
       
     .container
+      #errorAlert
+        .alert.alert-danger(role='alert')
+          span#errorMessage
+          
       h1 Sign Up
       form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
         .form-group
           label(for="name") Name: 
-          input.form-control#user(type="text", name="name", placeholder="Name")
+          input.form-control#name(type="text", name="name", placeholder="Name")
         .form-group
           label(for="username") Username: 
-          input.form-control#user(type="text", name="username", placeholder="Username")
+          input.form-control#username(type="text", name="username", placeholder="Username")
         .form-group
           label(for="pass") Password: 
           input.form-control#pass(type="password", name="pass", placeholder="Password")
@@ -36,14 +40,8 @@ block body
           label(for="pass2") Password: 
           input.form-control#pass2(type="password", name="pass2", placeholder="Retype password")
         input(type="hidden", name="_csrf", value="#{csrfToken}")
-        button.btn.btn-default#signupSubmit(type='formSubmit') Sign up
+        button.btn.btn-default#signupSubmit.formSubmit(type='submit') Sign up
       
     
-  
-  #domoMessage
-    img#speech(src="/assets/img/speech.png", alt="speech box")
-    h3
-      span#errorMessage
-    img#domo(src="assets/img/domo.png", alt="domo")
 block scripts
         script(src="/assets/client.js")

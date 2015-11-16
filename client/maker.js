@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     function handleError(message) {
         $("#errorMessage").text(message);
-        $("#domoMessage").animate({width:'toggle'},350);
+        $("#errorAlert").show();
     }
 
     function sendAjax(action, data) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
             data: data,
             dataType: "json",
             success: function(result, status, xhr) {
-                $("#domoMessage").animate({width:'hide'},350);
+                $("#errorAlert").show();
 
                 window.location = result.redirect;
             },
@@ -27,25 +27,25 @@ $(document).ready(function() {
         });        
     }
 
-    $("#makeDomoSubmit").on("click", function(e) {
+    $("#makeTaskSubmit").on("click", function(e) {
         e.preventDefault();
 
-        $("#domoMessage").animate({width:'hide'},350);
+        $("#errorAlert").show();
 
-        if($("#domoName").val() == '' || $("#domoAge").val() == '') {
-            handleError("RAWR! All fields are required");
+        if($("#taskName").val() == '' || $("#taskImportance").val() == '' || $("#taskDate").val() == '') {
+            handleError("Oops! All fields are required");
             return false;
         }
 
-        sendAjax($("#domoForm").attr("action"), $("#domoForm").serialize());
+        sendAjax($("#taskForm").attr("action"), $("#taskForm").serialize());
 
         return false;
     });
 
-//    $("#removeDomoSubmit").on("click", function(e) {
+//    $("#removeTaskSubmit").on("click", function(e) {
 //        e.preventDefault();
 //
-//        sendAjax($("#domoForm").attr("action"), $("#domoForm").serialize());
+//        sendAjax($("#taskForm").attr("action"), $("#taskForm").serialize());
 //
 //        return false;
 //    });

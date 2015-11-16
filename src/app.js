@@ -52,7 +52,7 @@ app.use(session({
         port: redisURL.port,
         pass: redisPASS
     }),
-    secret: 'Secret Key Here',
+    secret: 'Secret MVC Key Here',
     resave: true,
     saveUninitialized: true,
     cookie: {

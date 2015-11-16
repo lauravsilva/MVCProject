@@ -23,14 +23,13 @@ block body
 
       
     .container
+      #errorAlert
+        .alert.alert-danger(role='alert')
+          span#errorMessage
+      
       section#profile
         h1 Name: #{search.name}
         h1 Username: #{search.username}
   
-//-  #domoMessage
-//-    img#speech(src="/assets/img/speech.png", alt="speech box")
-//-    h3
-//-      span#errorMessage
-//-    img#domo(src="assets/img/domo.png", alt="domo")
 block scripts
         script(src="/assets/maker.js")

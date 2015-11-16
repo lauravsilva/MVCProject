@@ -46,7 +46,7 @@ var login = function(req, res){
 
 var signup = function(req, res){
 
-    if(!req.body.username || !req.body.pass || !req.body.pass2){
+    if(!req.body.username || !req.body.pass || !req.body.pass2 || !req.body.name){
         return res.status(400).json({error: "Oops! All fields are required"});
     }
 

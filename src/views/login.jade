@@ -21,16 +21,21 @@ block body
 
       
     .container
+      #errorAlert
+        .alert.alert-danger(role='alert')
+          span#errorMessage
+          
       section#login
         form#loginForm(class="mainForm", name="loginForm", action="/login", method="POST")
           .form-group
             label(for="username") Username: 
-            input.form-control#user(type="text", name="username", placeholder="username")
+            input.form-control#user(type="text", name="username", placeholder="Username")
           .form-group
             label(for="pass") Password: 
-            input.form-control#pass(type="password", name="pass", placeholder="password")
+            input.form-control#pass(type="password", name="pass", placeholder="Password")
           input(type="hidden", name="_csrf", value="#{csrfToken}")
-          button.btn.btn-default#loginSubmit(type='submit') Sign in
+          button.btn.btn-default#loginSubmit(type='formSubmit') Log in
     
+      
 block scripts
     script(src="/assets/client.js")
