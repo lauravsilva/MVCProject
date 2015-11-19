@@ -15,7 +15,6 @@ $(document).ready(function() {
             data: data,
             dataType: "json",
             success: function(result, status, xhr) {
-//                $("#errorAlert").animate({width:'hide'},350);
 
                 window.location = result.redirect;
             },

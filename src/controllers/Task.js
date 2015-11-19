@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var models = require('../models');
+var url = require('url');
 
 var Task = models.Task;
 
@@ -53,11 +54,28 @@ var makeTask = function(req, res){
 
 };
 
+
 var removeTask = function(req, res){
-    
+
+    parsedURL = url.parse(req.url, true);
+
+    Task.TaskModel.findOne({id: parsedURL.query['id']}, function(err, docs){
+        if (err) {
+            console.log(err);
+            return res.status(400).json({error: "An error occurred"});
+        }
+        
+        //also check it belongs to the user
+        docs.remove();
+        docs.save();
+
+        //res.json({redirect: '/display'});
+        res.render('display', {csrfToken: req.csrfToken()});
+    });
+
 };
 
 module.exports.makerPage = makerPage;
 module.exports.make = makeTask;
-module.exports.remove = removeTask;
+module.exports.removeTask = removeTask;
 module.exports.displayPage = displayPage;

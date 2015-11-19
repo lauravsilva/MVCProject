@@ -44,7 +44,8 @@ TaskSchema.methods.toAPI = function() {
     return {
         name: this.name,
         importance: this.importance,
-        date: this.date
+        date: this.date,
+        _id: this._id
     };
 };
 
@@ -53,7 +54,7 @@ TaskSchema.statics.findByOwner = function(ownerId, callback) {
         owner: mongoose.Types.ObjectId(ownerId)
     };
 
-    return TaskModel.find(search).select("name importance date").exec(callback);
+    return TaskModel.find(search).sort('date').select("name importance date").exec(callback);
 };
 
 

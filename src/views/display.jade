@@ -30,21 +30,24 @@ block body
         a(href='/maker') + Add Task
       .panel.panel-default
         if !tasks || tasks.length == 0
-          h4 No Tasks
+          .panel-body
+            ul.list-group
+              h4 No Tasks
         else
           .panel-heading
             h3.panel-title Date Here
           .panel-body
             ul.list-group
               each val in tasks
-                li.list-group-item
-                  span.delete
-                    a(href='/') x
-                  span.badge #{val.importance}
-                  h4.list-group-item-heading #{val.name}
-                  p.list-group-item-text #{val.date}
-      h3.text-center Total Tasks: #{tasks.length}
+                li.list-group-item(id=val.id)
+                    span.delete
+                      //-button.btn.btn-default.removeTaskSubmit(type='submit') x
+                      a(href="/removeTask/#{val.id}") remove
+                    span.badge #{val.importance}
+                    h4.list-group-item-heading #{val.name}
+                    p.list-group-item-text #{val.date}
+          h3.text-center Total Tasks: #{tasks.length}
 
 
 block scripts
-        script(src="/assets/maker.js")
+  script(src="/assets/maker.js")
