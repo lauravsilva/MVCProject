@@ -69,8 +69,7 @@ var removeTask = function(req, res){
         docs.remove();
         docs.save();
 
-        //res.json({redirect: '/display'});
-        res.render('display', {csrfToken: req.csrfToken()});
+        res.redirect(req.get('referer'));
     });
 
 };
