@@ -1,56 +1,56 @@
 @import url(https://fonts.googleapis.com/css?family=Sacramento);
 
 h1 {
-  font-family: 'Sacramento', cursive;
+    font-family: 'Sacramento', cursive;
 }
 
 .navbar{
-  border-radius: 0;
-  font-size: 18px;
-  background: #895881;
+    border-radius: 0;
+    font-size: 18px;
+    background: #895881;
 }
 
 .navbar-inverse{
-  border-color: #895881;
+    border-color: #895881;
 }
 
 .navbar-inverse .navbar-nav>li>a{
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .navbar-inverse .navbar-nav>li>a:hover{
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .list-group-item>.badge{
-  float: left;
-  margin-right: 20px;
+    float: left;
+    margin-right: 20px;
 }
 
 .list-group-item{
-  padding: 20px;
+    padding: 20px;
 }
 
 .delete{
-  float: right;
-  font-size: 18px;
+    float: right;
+    font-size: 18px;
 }
 
 #errorAlert {
-  display:none;
+    display:none;
 }
 
 .btn-default{
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: #6ac9cd;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #6ac9cd;
 }
 
 .btn-default:hover{
-  color: #a789a2;
+    color: #a789a2;
 }
 
 a, a:hover {
-  color: #f36d38;
+    color: #f36d38;
 }

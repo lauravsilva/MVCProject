@@ -25,11 +25,10 @@ block body
     .container
       h1 Add a Task
       
-      #errorAlert
-        .alert.alert-danger(role='alert')
-          span#errorMessage
-          
       form#taskForm.col-md-4(class="taskForm", name="taskForm", action="/maker", method="POST")
+        #errorAlert
+          .alert.alert-danger(role='alert')
+            span#errorMessage
         .form-group
           label(for="name") Task: 
           input.form-control#taskName(type="text", name="name", placeholder="Task Name")

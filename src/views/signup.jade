@@ -20,13 +20,13 @@ block body
               a(href='/login') Log In
 
       
-    .container
-      #errorAlert
-        .alert.alert-danger(role='alert')
-          span#errorMessage
-          
+    .container    
       h1 Sign Up
+      
       form#signupForm.col-md-4(class="mainForm", name="signupForm", action="/signup", method="POST")
+        #errorAlert
+          .alert.alert-danger(role='alert')
+            span#errorMessage
         .form-group
           label(for="name") Name: 
           input.form-control#name(type="text", name="name", placeholder="Name")
@@ -44,4 +44,4 @@ block body
       
     
 block scripts
-        script(src="/assets/client.js")
+  script(src="/assets/client.js")
