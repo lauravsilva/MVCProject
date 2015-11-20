@@ -28,27 +28,23 @@ block body
           span#errorMessage
       h1.text-center 
         a(href='/maker') + Add Task
-      .panel.panel-default
-        if !tasks || tasks.length == 0
+      if !tasks || tasks.length == 0
+        .panel.panel-default
           .panel-body
             ul.list-group
-              h4 No Tasks
-        else
-          .panel-heading
-            h3.panel-title Date Here
-          .panel-body
-            ul.list-group
-              each val in tasks
-                li.list-group-item(id=val.id)
-                    span.delete
-                      //-button.btn.btn-default.removeTaskSubmit(type='submit') x
-                      a(href="/removeTask/#{val.id}") remove
-                    span.badge #{val.importance}
-                    h4.list-group-item-heading #{val.name}
-                    p.list-group-item-text #{val.date}
-                    
-                    
-          h3.text-center Total Tasks: #{tasks.length}
+              h4 No Tasks!
+      else
+        .panel-body
+          ul.list-group
+            each val in tasks
+              li.list-group-item(id=val.id)
+                span.delete
+                  a(href="/removeTask/#{val.id}") x
+                span.badge #{val.importance}
+                h4.list-group-item-heading #{val.name}
+                p.list-group-item-text Due: #{val.date}
+                   
+      h3.text-center Total Tasks: #{tasks.length}
 
 
 block scripts

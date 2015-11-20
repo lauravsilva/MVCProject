@@ -14,7 +14,7 @@ block body
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a.active(href='/display') Home
+              a(href='#') Pending
           ul.nav.navbar-nav.pull-right
             li
               a(href='/login') Log In
@@ -26,7 +26,7 @@ block body
           span#errorMessage
           
       h1 Sign Up
-      form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
+      form#signupForm.col-md-4(class="mainForm", name="signupForm", action="/signup", method="POST")
         .form-group
           label(for="name") Name: 
           input.form-control#name(type="text", name="name", placeholder="Name")

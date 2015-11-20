@@ -14,19 +14,23 @@ block body
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a.active(href='/display') Home
+              a(href='#') Pending
           ul.nav.navbar-nav.pull-right
             li
               a(href='/signup') Sign Up
 
       
     .container
+      section#logo.col-md-6
+        img(src='/assets/img/pendingicon.png', alt='')
       #errorAlert
         .alert.alert-danger(role='alert')
           span#errorMessage
-          
-      section#login
-        form#loginForm(class="mainForm", name="loginForm", action="/login", method="POST")
+      section#login.col-md-6
+        h1 Pending
+        p Pending is a to-do list application!
+        br
+        form#loginForm.col-md-10(class="mainForm", name="loginForm", action="/login", method="POST")
           .form-group
             label(for="username") Username: 
             input.form-control#user(type="text", name="username", placeholder="Username")
@@ -35,7 +39,9 @@ block body
             input.form-control#pass(type="password", name="pass", placeholder="Password")
           input(type="hidden", name="_csrf", value="#{csrfToken}")
           button.btn.btn-default#loginSubmit(type='formSubmit') Log in
-    
-      
+          br
+          br
+          strong Already a member?  
+          a(href='/signup') Sign Up
 block scripts
     script(src="/assets/client.js")
