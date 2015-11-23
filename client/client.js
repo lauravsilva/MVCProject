@@ -29,9 +29,9 @@ $(document).ready(function() {
     $("#signupSubmit").on("click", function(e) {
         e.preventDefault();
     
-        $("#errorAlert").show();
     
         if($("#name").val() == '' || $("#username").val() == '' || $("#pass").val() == '' || $("#pass2").val() == ''){
+            $("#errorAlert").show();
             handleError("Oops! All fields are required");
             return false;
         }
@@ -49,9 +49,8 @@ $(document).ready(function() {
     $("#loginSubmit").on("click", function(e) {
         e.preventDefault();
     
-        $("#errorAlert").show();
-    
         if($("#user").val() == '' || $("#pass").val() == '') {
+            $("#errorAlert").show();
             handleError("Oops! Username or password field is empty");
             return false;
         }

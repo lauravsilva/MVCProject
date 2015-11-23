@@ -42,12 +42,10 @@ var TaskSchema = new mongoose.Schema({
 });
 
 TaskSchema.methods.toAPI = function() {
-
     return {
         name: this.name,
         importance: this.importance,
-        //    date: moment(this.date).format("MMM DD YY"),
-        date: this.date,
+        date: moment(this.date).format("MMMM Do YYYY"),
         _id: this._id
     };
 };

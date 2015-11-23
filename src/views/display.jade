@@ -34,15 +34,21 @@ block body
             ul.list-group
               h4 No Tasks!
       else
-        .panel-body
-          ul.list-group
-            each val in tasks
-              li.list-group-item(id=val.id)
+        - var currentDate = ""
+        .panel.panel-default
+          each val in tasks
+            if currentDate == "" || currentDate != val.date
+              - currentDate = val.date
+                .panel-heading
+                  h3.panel-title #{val.date}
+            ul.list-group    
+              li.list-group-item(id=val._id)
                 span.delete
-                  a(href="/removeTask/#{val.id}") x
+                  a(href="/removeTask/#{val._id}") x
                 span.badge #{val.importance}
                 h4.list-group-item-heading #{val.name}
-                p.list-group-item-text Due: #{val.date}
+                p.list-group-item-text ID: #{val._id}
+          
                    
       h3.text-center Total Tasks: #{tasks.length}
 

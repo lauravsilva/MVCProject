@@ -25,22 +25,31 @@ var displayPage = function(req, res){
             return res.status(400).json({error: "An error occurred"});
         }
 
+        var i;
+        for(i = 0; i < docs.length; i++){
+            docs[i] = docs[i].toAPI();
+            console.log(docs[i]._id);
+        }
+
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs});
     });
 };
 
 var makeTask = function(req, res){
     var currentDate = new Date();
+    currentDate = moment(currentDate).format('L');
 
     if(!req.body.name || !req.body.importance || !req.body.date) {
         return res.status(400).json({error: "Oops! All fields are required"});
     }
 
-    //  console.log(currentDate);
-    //  console.log(req.body.date);
-    //  if(req.body.date < currentDate){
-    //    return res.status(400).json({error: "Oops! You can't create a task for the past"});
-    //  }
+    if(req.body.date < currentDate){
+        return res.status(400).json({error: "Make sure the task you're creating is for the future!"});
+    }
+
+    if(req.body.importance < 1 || req.body.importance > 3){
+        return res.status(400).json({error: "Oops! Importance must be between 1 and 3"});
+    }
 
     var taskData = {
         name: req.body.name,
@@ -57,7 +66,7 @@ var makeTask = function(req, res){
             return res.status(400).json({error: "An error occurred"});
         }
 
-        //    req.session.task = newTask.toAPI();
+        req.session.task = newTask.toAPI();
 
         res.json({redirect: '/display'});
     });
@@ -76,6 +85,9 @@ var removeTask = function(req, res){
         }
 
         //also check it belongs to the user
+        
+        //console.log("Removedddd: " + docs.name + " " + docs.id);
+
         docs.remove();
         docs.save();
 
