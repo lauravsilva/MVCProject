@@ -24,12 +24,12 @@ block body
       section#logo.col-md-6
         img(src='/assets/img/pendingicon.png', alt='')
       section#login.col-md-6
-        #errorAlert
-          .alert.alert-danger(role='alert')
-            span#errorMessage
         h1 Pending
         p Pending is a to-do list application!
         br
+        #errorAlert
+          .alert.alert-danger(role='alert')
+            span#errorMessage
         form#loginForm.col-md-10(class="mainForm", name="loginForm", action="/login", method="POST")
           .form-group
             label(for="username") Username: 
@@ -41,7 +41,7 @@ block body
           button.btn.btn-default#loginSubmit(type='formSubmit') Log in
           br
           br
-          strong Already a member?  
+          strong Not a member?  
           a(href='/signup') Sign Up
 block scripts
     script(src="/assets/client.js")

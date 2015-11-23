@@ -28,7 +28,6 @@ var displayPage = function(req, res){
         var i;
         for(i = 0; i < docs.length; i++){
             docs[i] = docs[i].toAPI();
-            console.log(docs[i]._id);
         }
 
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs});
@@ -43,9 +42,9 @@ var makeTask = function(req, res){
         return res.status(400).json({error: "Oops! All fields are required"});
     }
 
-    if(req.body.date < currentDate){
-        return res.status(400).json({error: "Make sure the task you're creating is for the future!"});
-    }
+    //    if(req.body.date < currentDate){
+    //        return res.status(400).json({error: "Make sure the task you're creating is for the future!"});
+    //    }
 
     if(req.body.importance < 1 || req.body.importance > 3){
         return res.status(400).json({error: "Oops! Importance must be between 1 and 3"});
@@ -85,8 +84,7 @@ var removeTask = function(req, res){
         }
 
         //also check it belongs to the user
-        
-        //console.log("Removedddd: " + docs.name + " " + docs.id);
+        console.log("Removedddd: " + docs);
 
         docs.remove();
         docs.save();

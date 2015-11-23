@@ -28,9 +28,13 @@ block body
           span#errorMessage
       
       section#profile
-        h1 Profile
-        h3 Welcome, #{search.name}!
-        h3 Username: #{search.username}
+        h1 Profile        
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title Welcome, #{search.name}!
+          ul.list-group    
+            li.list-group-item
+              p.list-group-item-heading Username: #{search.username}
   
 block scripts
         script(src="/assets/maker.js")
