@@ -28,6 +28,7 @@ var displayPage = function(req, res){
         var i;
         for(i = 0; i < docs.length; i++){
             docs[i] = docs[i].toAPI();
+            console.log(docs[i].name + ": " + docs[i]._id);
         }
 
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs});
@@ -76,18 +77,19 @@ var makeTask = function(req, res){
 var removeTask = function(req, res){
 
     parsedURL = url.parse(req.url, true);
-
-    Task.TaskModel.findOne({id: parsedURL.query.id}, function(err, docs){
+    console.log("url: " + JSON.stringify(parsedURL));
+    
+    Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
         if (err) {
             console.log(err);
             return res.status(400).json({error: "An error occurred"});
         }
 
         //also check it belongs to the user
-        console.log("Removedddd: " + docs);
+        console.log("Removed: " + doc);
 
-        docs.remove();
-        docs.save();
+        doc.remove();
+        doc.save();
 
         res.redirect(req.get('referer'));
     });
