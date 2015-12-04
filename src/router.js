@@ -1,5 +1,6 @@
 var controllers = require('./controllers');
 var mid = require('./middleware');
+var util = require('./utilities');
 
 var router = function(app) {
     app.get("/login", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
@@ -12,8 +13,9 @@ var router = function(app) {
     app.get("/editTask/:id", mid.requiresLogin, controllers.Task.editPage);
     app.post("/editTask/:id", mid.requiresLogin, controllers.Task.edit);
     app.get("/removeTask/:id", mid.requiresLogin, controllers.Task.removeTask);
+  app.get("/checkTask/:id", mid.requiresLogin, controllers.Task.checkTask);
     app.get("/display", mid.requiresLogin, controllers.Task.displayPage);
-    app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);
+    app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);    
     app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

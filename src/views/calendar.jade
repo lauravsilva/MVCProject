@@ -1,0 +1,34 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+    nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a.active(href='/display') Home
+          ul.nav.navbar-nav.pull-right
+            li
+              a(href='/profile') Profile
+            li
+              a(href="/logout") Log out
+
+      
+    .container
+      each c in cal
+        h1 c
+                   
+
+
+block scripts
+  script(src="/assets/maker.js")
+  
+  

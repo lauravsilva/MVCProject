@@ -47,12 +47,14 @@ block body
                   a(href="/removeTask/#{val._id}") x
                 span.edit
                   a(href="/editTask/#{val._id}") edit
+                span.edit
+                  a(href="/checkTask/#{val._id}") check
                 span.badge #{val.importance}
                 h4.list-group-item-heading #{val.name}
           
                    
       h3.text-center Total Tasks: #{tasks.length}
-
+      
 
 block scripts
   script(src="/assets/maker.js")

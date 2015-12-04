@@ -60,3 +60,10 @@ h1 {
 a, a:hover {
     color: #f36d38;
 }
+
+.col-md-2.calendar{
+  border: 2px solid red;
+  margin: 0;
+  padding: 0;
+}
+
