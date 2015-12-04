@@ -4,6 +4,8 @@ var url = require('url');
 var moment = require('moment');
 var calendar = require('node-calendar');
 
+var util = require('../utilities');
+
 var Task = models.Task;
 
 var makerPage = function(req, res){
@@ -13,6 +15,8 @@ var makerPage = function(req, res){
       console.log(err);
       return res.status(400).json({error: "An error occurred"});
     }
+
+    util.displayCalendar();
 
     res.render('app', {csrfToken: req.csrfToken()});
   });
@@ -31,20 +35,8 @@ var displayPage = function(req, res){
       docs[i] = docs[i].toAPI();
     }
 
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
 
-    var cal = new calendar.Calendar().monthdatescalendar(year,month);
-
-    for (var x = 0; x < cal.length; x++){
-      for (var j = 0; j < 7; j++){
-        cal[x][j] = moment(cal[x][j]).format("LL");
-      }
-    }
-
-
-    res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: cal});
+    res.render('display', {csrfToken: req.csrfToken(), tasks: docs});
   });
 };
 
@@ -115,6 +107,8 @@ var checkTask = function(req, res){
     }
 
     //edit the model so that "completed" is true
+    //doc.completed = true;
+    //doc.save();
 
     res.redirect(req.get('referer'));
   });
@@ -135,69 +129,12 @@ var editPage = function(req, res){
   });
 };
 
-
-//var editTask = function(req, res){
-//    console.log("IN EDIT TASK");
-//
-//    Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
-//
-//        console.log(doc);
-//
-//
-//        if (err) {
-//            console.log(err);
-//            return res.status(400).json({error: "An error occurred"});
-//        }
-//
-//        if(!req.body.name || !req.body.importance || !req.body.date) {
-//            return res.status(400).json({error: "Oops! All fields are required"});
-//        }
-//
-//        if(req.body.importance < 1 || req.body.importance > 3){
-//            return res.status(400).json({error: "Oops! Importance must be between 1 and 3"});
-//        }
-//
-//
-//        var editedTaskData = {
-//            name: req.body.name,
-//            importance: req.body.importance,
-//            date: req.body.date
-//        };
-//
-//
-//
-//        doc.update(
-//            {_id: req.params.id},
-//            {name: req.body.name,
-//             importance: req.body.importance,
-//             date: req.body.date},
-//            {upsert: true}
-//        );
-//
-//
-//        console.log(editedTaskData);
-//        console.log(doc);
-//
-//        res.json({redirect: '/display'});
-//    });
-//};
-
 var editTask = function(req, res){
-  //    Task.TaskModel.update(
-  //        { _id: req.params.id}, 
-  //        { 
-  //            name: req.body.name,
-  //            importance: req.body.importance,
-  //            date: req.body.date
-  //        },
-  //        { upsert: false }
-  //    );
-
   Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
 
-    doc.name: req.body.name;
-    doc.importance: req.body.importance
-    doc.date: req.body.date;
+    doc.name = req.body.name;
+    doc.importance = req.body.importance
+    doc.date = req.body.date;
     doc.save();
 
     res.json({redirect: '/display'});

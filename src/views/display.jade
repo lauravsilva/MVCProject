@@ -36,21 +36,21 @@ block body
       else
         - var currentDate = ""
         .panel.panel-default
-          each val in tasks
-            if currentDate == "" || currentDate != val.date
-              - currentDate = val.date
+          each t in tasks
+            if currentDate == "" || currentDate != t.date
+              - currentDate = t.date
                 .panel-heading
-                  h3.panel-title #{val.date}
+                  h3.panel-title #{t.date}
             ul.list-group    
-              li.list-group-item(id=val._id)
+              li.list-group-item(id=t._id)
                 span.delete
-                  a(href="/removeTask/#{val._id}") x
+                  a(href="/removeTask/#{t._id}") x
                 span.edit
-                  a(href="/editTask/#{val._id}") edit
+                  a(href="/editTask/#{t._id}") edit
                 span.edit
-                  a(href="/checkTask/#{val._id}") check
-                span.badge #{val.importance}
-                h4.list-group-item-heading #{val.name}
+                  a(href="/checkTask/#{t._id}") check
+                span.badge #{t.importance}
+                h4.list-group-item-heading #{t.name}
           
                    
       h3.text-center Total Tasks: #{tasks.length}
