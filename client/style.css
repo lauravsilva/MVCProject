@@ -36,6 +36,12 @@ h1 {
     font-size: 18px;
 }
 
+.edit{
+    float: right;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
 #errorAlert {
     display:none;
 }

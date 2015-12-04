@@ -9,6 +9,8 @@ var router = function(app) {
     app.get("/logout", mid.requiresLogin, controllers.Account.logout);
     app.get("/maker", mid.requiresLogin, controllers.Task.makerPage);
     app.post("/maker", mid.requiresLogin, controllers.Task.make);
+    app.get("/editTask/:id", mid.requiresLogin, controllers.Task.editPage);
+    app.post("/editTask/:id", mid.requiresLogin, controllers.Task.edit);
     app.get("/removeTask/:id", mid.requiresLogin, controllers.Task.removeTask);
     app.get("/display", mid.requiresLogin, controllers.Task.displayPage);
     app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);

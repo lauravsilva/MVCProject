@@ -28,7 +28,6 @@ var displayPage = function(req, res){
         var i;
         for(i = 0; i < docs.length; i++){
             docs[i] = docs[i].toAPI();
-            console.log(docs[i].name + ": " + docs[i]._id);
         }
 
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs});
@@ -37,7 +36,7 @@ var displayPage = function(req, res){
 
 var makeTask = function(req, res){
     var currentDate = new Date();
-    currentDate = moment(currentDate).format('L');
+    currentDate = moment(currentDate).format('LL');
 
     if(!req.body.name || !req.body.importance || !req.body.date) {
         return res.status(400).json({error: "Oops! All fields are required"});
@@ -76,9 +75,6 @@ var makeTask = function(req, res){
 
 var removeTask = function(req, res){
 
-    parsedURL = url.parse(req.url, true);
-    console.log("url: " + JSON.stringify(parsedURL));
-    
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
         if (err) {
             console.log(err);
@@ -86,7 +82,7 @@ var removeTask = function(req, res){
         }
 
         //also check it belongs to the user
-        console.log("Removed: " + doc);
+        //console.log("Removed: " + doc);
 
         doc.remove();
         doc.save();
@@ -96,7 +92,84 @@ var removeTask = function(req, res){
 
 };
 
+var editPage = function(req, res){
+    Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
+        if (err) {
+            console.log(err);
+            return res.status(400).json({error: "An error occurred"});
+        }
+
+        doc = doc.toAPI();
+
+        res.render('editTask', {csrfToken: req.csrfToken(), t: doc});
+    });
+};
+
+
+//var editTask = function(req, res){
+//    console.log("IN EDIT TASK");
+//
+//    Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
+//
+//        console.log(doc);
+//
+//
+//        if (err) {
+//            console.log(err);
+//            return res.status(400).json({error: "An error occurred"});
+//        }
+//
+//        if(!req.body.name || !req.body.importance || !req.body.date) {
+//            return res.status(400).json({error: "Oops! All fields are required"});
+//        }
+//
+//        if(req.body.importance < 1 || req.body.importance > 3){
+//            return res.status(400).json({error: "Oops! Importance must be between 1 and 3"});
+//        }
+//
+//
+//        var editedTaskData = {
+//            name: req.body.name,
+//            importance: req.body.importance,
+//            date: req.body.date
+//        };
+//
+//
+//
+//        doc.update(
+//            {_id: req.params.id},
+//            {name: req.body.name,
+//             importance: req.body.importance,
+//             date: req.body.date},
+//            {upsert: true}
+//        );
+//
+//
+//        console.log(editedTaskData);
+//        console.log(doc);
+//
+//        res.json({redirect: '/display'});
+//    });
+//};
+
+var editTask = function(req, res){
+    Task.TaskModel.update(
+        { _id: req.params.id}, 
+        { $set: {
+            name: req.body.name,
+            importance: req.body.importance,
+            date: req.body.date}
+        },
+        { upsert: false }
+    );
+    
+    res.json({redirect: '/display'});
+};
+
+
 module.exports.makerPage = makerPage;
 module.exports.make = makeTask;
+module.exports.editPage = editPage;
+module.exports.edit = editTask;
 module.exports.removeTask = removeTask;
 module.exports.displayPage = displayPage;

@@ -1,0 +1,47 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/bootstrap.min.css")
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+    nav.navbar.navbar-inverse
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a.active(href='/display') Home
+          ul.nav.navbar-nav.pull-right
+            li
+              a(href='/profile') Profile
+            li
+              a(href="/logout") Log out
+
+
+    .container
+      h1 Edit Task
+      
+      form#taskForm.col-md-4(class="taskForm", name="taskForm", action="/editTask/#{t._id}", method="POST")
+        #errorAlert
+          .alert.alert-danger(role='alert')
+            span#errorMessage
+        .form-group
+          label(for="name") Task: 
+          input.form-control#taskName(type="text", name="name", placeholder="Description" value="#{t.name}")
+        .form-group
+          label(for="importance") Importance: 
+          input.form-control#taskImportance(type="text", name="importance", placeholder="1-3" value="#{t.importance}")
+        .form-group
+          label(for="date") Due Date: 
+          input.form-control#taskDate(type="text", name="date", placeholder="MM/DD/YYYY or Month Date Year " value="#{t.date}")
+        
+        input(type="hidden", name="_csrf", value="#{csrfToken}")
+        button.btn.btn-default#makeTaskSubmit(type='submit')  Save
+
+        
+block scripts
+  script(src="/assets/maker.js")

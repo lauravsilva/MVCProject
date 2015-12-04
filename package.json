@@ -28,6 +28,7 @@
     "jade": "^1.7.0",
     "moment": "^2.10.6",
     "mongoose": "^4.1.11",
+    "node-calendar": "^0.1.4",
     "serve-favicon": "^2.1.6",
     "underscore": "^1.7.0"
   },

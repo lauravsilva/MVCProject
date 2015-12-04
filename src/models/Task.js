@@ -45,7 +45,7 @@ TaskSchema.methods.toAPI = function() {
     return {
         name: this.name,
         importance: this.importance,
-        date: moment(this.date).format("MMMM Do YYYY"),
+        date: moment(this.date).format("LL"),
         _id: this._id
     };
 };

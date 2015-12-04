@@ -45,6 +45,8 @@ block body
               li.list-group-item(id=val._id)
                 span.delete
                   a(href="/removeTask/#{val._id}") x
+                span.edit
+                  a(href="/editTask/#{val._id}") edit
                 span.badge #{val.importance}
                 h4.list-group-item-heading #{val.name}
           
