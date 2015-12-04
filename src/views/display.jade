@@ -31,7 +31,7 @@ block body
       - var incomplete = 0
     
       h1.text-center 
-        a(href='/maker') + Add Task
+        a(href='/maker') &#x271A Add Task
         
         
       - var currentDate = ""
@@ -46,11 +46,11 @@ block body
             ul.list-group    
               li.list-group-item(id=t._id)
                 span.delete
-                  a(href="/removeTask/#{t._id}") x
+                  a(href="/removeTask/#{t._id}") &#x2716
                 span.edit
-                  a(href="/editTask/#{t._id}") edit
+                  a(href="/editTask/#{t._id}") &#x270E
                 span.edit
-                  a(href="/checkTask/#{t._id}") check
+                  a(href="/checkTask/#{t._id}") &#x2714
                 span.badge #{t.importance}
                 h4.list-group-item-heading #{t.name}
       

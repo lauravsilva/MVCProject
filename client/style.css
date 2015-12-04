@@ -1,13 +1,18 @@
-@import url(https://fonts.googleapis.com/css?family=Sacramento);
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Grand+Hotel);
 
 h1 {
-    font-family: 'Sacramento', cursive;
+    font-family: 'Grand Hotel', cursive;
+}
+
+h2, h3{
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar{
     border-radius: 0;
     font-size: 18px;
     background: #895881;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-inverse{
@@ -62,8 +67,8 @@ a, a:hover {
 }
 
 .col-md-2.calendar{
-  border: 2px solid red;
-  margin: 0;
-  padding: 0;
+    border: 2px solid red;
+    margin: 0;
+    padding: 0;
 }
 
