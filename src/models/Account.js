@@ -12,7 +12,6 @@ var AccountSchema = new mongoose.Schema({
         required: true,
         trim: true,
         unique: false,
-        match: /^[A-Za-z0-9_\-\.]{1,16}$/
     },
     
     username: {

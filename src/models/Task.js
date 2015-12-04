@@ -26,7 +26,12 @@ var TaskSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true,
-        trim: true,
+        trim: true
+    },
+
+    completed: {
+        type: Boolean,
+        default: false
     },
 
     owner: {
@@ -46,6 +51,7 @@ TaskSchema.methods.toAPI = function() {
         name: this.name,
         importance: this.importance,
         date: moment(this.date).format("LL"),
+        completed: this.completed,
         _id: this._id
     };
 };
@@ -55,7 +61,7 @@ TaskSchema.statics.findByOwner = function(ownerId, callback) {
         owner: mongoose.Types.ObjectId(ownerId)
     };
 
-    return TaskModel.find(search).sort('date').select("name importance date").exec(callback);
+    return TaskModel.find(search).sort('date').select("name importance date completed").exec(callback);
 };
 
 

@@ -16,7 +16,7 @@ var makerPage = function(req, res){
       return res.status(400).json({error: "An error occurred"});
     }
 
-    util.displayCalendar();
+    //util.displayCalendar();
 
     res.render('app', {csrfToken: req.csrfToken()});
   });
@@ -106,9 +106,8 @@ var checkTask = function(req, res){
       return res.status(400).json({error: "An error occurred"});
     }
 
-    //edit the model so that "completed" is true
-    //doc.completed = true;
-    //doc.save();
+    doc.completed = true;
+    doc.save();
 
     res.redirect(req.get('referer'));
   });

@@ -26,17 +26,19 @@ block body
       #errorAlert
         .alert.alert-danger(role='alert')
           span#errorMessage
+          
+      - var complete = 0
+      - var incomplete = 0
+    
       h1.text-center 
         a(href='/maker') + Add Task
-      if !tasks || tasks.length == 0
-        .panel.panel-default
-          .panel-body
-            ul.list-group
-              h4 No Tasks!
-      else
-        - var currentDate = ""
-        .panel.panel-default
-          each t in tasks
+        
+        
+      - var currentDate = ""
+      .panel.panel-default
+        each t in tasks
+          if t.completed == false
+            - incomplete++
             if currentDate == "" || currentDate != t.date
               - currentDate = t.date
                 .panel-heading
@@ -51,9 +53,18 @@ block body
                   a(href="/checkTask/#{t._id}") check
                 span.badge #{t.importance}
                 h4.list-group-item-heading #{t.name}
-          
-                   
-      h3.text-center Total Tasks: #{tasks.length}
+      
+      h3.text-center Total Tasks Remaining: #{incomplete}
+      
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Total Tasks Completed: #{complete}
+        ul.list-group    
+          li.list-group-item
+            each completedTask in tasks
+              if completedTask.completed == true
+                - complete++
+                h4.list-group-item-heading #{completedTask.name}
       
 
 block scripts
