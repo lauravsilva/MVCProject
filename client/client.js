@@ -59,4 +59,8 @@ $(document).ready(function() {
 
         return false;
     });
+    
+    $("#cancel").on("click", function(e) {
+        history.go(-1);
+    });
 });

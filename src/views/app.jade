@@ -41,6 +41,10 @@ block body
         
         input(type="hidden", name="_csrf", value="#{csrfToken}")
         button.btn.btn-default#makeTaskSubmit(type='submit')  Add
+        
+        input(type="hidden")
+        button.btn.btn-default#cancel(type='submit')  Cancel
+
 
         
 block scripts

@@ -41,6 +41,8 @@ block body
           input.form-control#pass2(type="password", name="pass2", placeholder="Retype password")
         input(type="hidden", name="_csrf", value="#{csrfToken}")
         button.btn.btn-default#signupSubmit.formSubmit(type='submit') Sign up
+        input(type="hidden")
+        button.btn.btn-default#cancel(type='submit')  Cancel
       
     
 block scripts
