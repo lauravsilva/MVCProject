@@ -30,9 +30,9 @@ block body
       - var complete = 0
       - var incomplete = 0
     
-      h2.text-center Week of #{calendar[0]} - #{calendar[6]}
+      h2.text-center #{calendar[0]} - #{calendar[6]}
       h3.plus.text-center
-        a(href='/maker') &#x271A Add Task
+        a(href='/maker') &#x271A
         
       each day in calendar
           - var currentDate = ""
@@ -50,15 +50,15 @@ block body
                       h3.panel-title #{t.date}
                     ul.list-group    
                 li.list-group-item(id=t._id)
+                  span.check
+                    a(href="/checkTask/#{t._id}") &#x2714
                   span.badge #{t.importance}
-                  h3.list-group-item-heading #{t.name}
+                  h4.list-group-item-heading #{t.name}
                   span.icons
-                      span.delete
-                        a(href="/removeTask/#{t._id}") &#x2716
-                      span.edit
-                        a(href="/editTask/#{t._id}") &#x270E
-                      span.check
-                        a(href="/checkTask/#{t._id}") &#x2714
+                    span.delete
+                      a(href="/removeTask/#{t._id}") &#x2716
+                    span.edit
+                      a(href="/editTask/#{t._id}") &#x270E
 
       
       h3.text-center Total Tasks Remaining: #{incomplete}

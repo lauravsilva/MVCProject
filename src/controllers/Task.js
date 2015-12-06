@@ -46,15 +46,13 @@ var displayPage = function(req, res){
         for (var x = 0; x < cal.length; x++){
             for (var j = 0; j < 7; j++){
                 cal[x][j] = moment(cal[x][j]).format("LL");
-                if(formatedDate == moment(cal[x][j]).format("LL")){
+                if(formatedDate == cal[x][j]){
                     index = x;
                 }
             }
         }
 
         thisWeek = cal[index];
-
-
 
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek});
     });
