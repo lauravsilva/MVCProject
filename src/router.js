@@ -16,7 +16,7 @@ var router = function(app) {
   app.get("/checkTask/:id", mid.requiresLogin, controllers.Task.checkTask);
     app.get("/display", mid.requiresLogin, controllers.Task.displayPage);
     app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);    
-//    app.get("/calendar", mid.requiresLogin, controllers.util.displayCalendar);  
+    app.get("/calendar", mid.requiresLogin, util.displayCalendar);  
     app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

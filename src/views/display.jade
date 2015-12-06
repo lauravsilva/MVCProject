@@ -30,32 +30,38 @@ block body
       - var complete = 0
       - var incomplete = 0
     
-      h1.text-center 
+      h2.text-center Week of #{calendar[0]} - #{calendar[6]}
+      h3.plus.text-center
         a(href='/maker') &#x271A Add Task
         
-        
-      - var currentDate = ""
-      .panel.panel-default
-        each t in tasks
-          if t.completed == false
-            - incomplete++
-            if currentDate == "" || currentDate != t.date
-              - currentDate = t.date
-                .panel-heading
-                  h3.panel-title #{t.date}
-            ul.list-group    
-              li.list-group-item(id=t._id)
-                span.badge #{t.importance}
-                h3.list-group-item-heading #{t.name}
-                div.icons
-                    span.delete
-                      a(href="/removeTask/#{t._id}") &#x2716
-                    span.edit
-                      a(href="/editTask/#{t._id}") &#x270E
-                    span.check
-                      a(href="/checkTask/#{t._id}") &#x2714
+      each day in calendar
+          - var currentDate = ""
+          if tasks.length == 0
+            .panel.panel-default
+                    .panel-heading
+                      h3.panel-title No Tasks
+          each t in tasks
+            if t.completed == false && t.date == day
+                - incomplete++
+                if currentDate == "" || currentDate != t.date
+                  - currentDate = t.date
+                  .panel.panel-default
+                    .panel-heading
+                      h3.panel-title #{t.date}
+                    ul.list-group    
+                li.list-group-item(id=t._id)
+                  span.badge #{t.importance}
+                  h3.list-group-item-heading #{t.name}
+                  span.icons
+                      span.delete
+                        a(href="/removeTask/#{t._id}") &#x2716
+                      span.edit
+                        a(href="/editTask/#{t._id}") &#x270E
+                      span.check
+                        a(href="/checkTask/#{t._id}") &#x2714
+
       
-      h2.text-center Total Tasks Remaining: #{incomplete}
+      h3.text-center Total Tasks Remaining: #{incomplete}
       
       .panel.panel-default
         ul.list-group    
@@ -63,7 +69,7 @@ block body
             each completedTask in tasks
               if completedTask.completed == true
                 - complete++
-                h4.list-group-item-heading #{completedTask.name}
+                h4 #{completedTask.name}
         .panel-heading
           h3.panel-title Total Tasks Completed: #{complete}
       

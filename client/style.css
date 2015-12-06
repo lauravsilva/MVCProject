@@ -1,10 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat|Grand+Hotel);
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Six+Caps);
+
 
 h1 {
-    font-family: 'Grand Hotel', cursive;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 70px;
 }
 
-h2, h3{
+h2 {
+    font-family: 'Six Caps', sans-serif;
+    font-size: 50px;
+}
+
+h3 {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -30,11 +37,19 @@ h2, h3{
 .list-group-item>.badge{
     float: left;
     margin-right: 20px;
-    font-size: 16px;
+    font-size: 18px;
+    background-color: #6ac9cd;
+    min-width: 20px;
+    padding: 6px 10px;
+    border-radius: 20px;
 }
 
 .list-group-item{
     padding: 20px;
+}
+
+.list-group-item-heading{
+    display: inline-block;
 }
 
 .icons{
@@ -42,9 +57,33 @@ h2, h3{
 }
 
 .delete, .edit, .check{
-    float: left;
+    float: right;
     font-size: 18px;
     margin-right: 10px;
+}
+
+.check{
+    margin-right: 60px;
+}
+
+.plus{
+    margin: 0;
+    display: inline-block;
+    width: 170px;
+    padding: 8px 15px 8px 15px;
+    vertical-align: middle;
+    background-color: #6ac9cd;
+    border-radius: 50px;
+    color: #ffffff;
+}
+
+.plus a{
+    color: #ffffff;
+}
+
+.plus a:hover, .plus a:active{
+    text-decoration: none;
+    color: #895881;
 }
 
 #errorAlert {
@@ -72,9 +111,7 @@ a, a:hover {
     color: #f36d38;
 }
 
-.col-md-2.calendar{
-    border: 2px solid red;
-    margin: 0;
-    padding: 0;
+.panel{
+  margin-bottom: 0;
+  margin-top: 20px;
 }
-

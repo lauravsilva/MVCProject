@@ -23,12 +23,17 @@ block body
 
       
     .container
-      each c in cal
-        h1 c
-                   
+    
+      button.btn.btn-default#back(type='submit')  Back
+      
+      each day in calendar
+          h3 #{day}
+          br
+            
+      button.btn.btn-default#next(type='submit')  Next
 
 
 block scripts
-  script(src="/assets/maker.js")
+  script(src="/assets/calendar.js")
   
   
