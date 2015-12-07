@@ -91,7 +91,7 @@ h3 {
     margin: 20px auto;
     float: none;
     width: 60px;
-    padding: 8px 47px 8px 15px;
+    padding: 8px 40px 8px 13px;
     vertical-align: middle;
     background-color: #6ac9cd;
     border-radius: 50px;
@@ -162,6 +162,7 @@ a, a:hover {
     font-size: 50px;
     vertical-align: middle;
     font-weight: bold;
+    margin: 0 10px;
 }
 
 .left-arrow:hover, .right-arrow:hover{

@@ -33,21 +33,61 @@ var displayPage = function(req, res){
         }
 
 
+        //Format parameter date back to "LL"
+        var parameterDate = req.params.dateParam.substring(0,2) + "/" + req.params.dateParam.substring(2,4) + "/" + req.params.dateParam.substring(4,8);
+        parameterDate = moment(parameterDate).format("LL");
 
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
+        // Calendar
+        var date = parameterDate;
+//        console.log(parameterDate);
+        
+        var year = req.params.dateParam.substring(4,8);
+        var month = req.params.dateParam.substring(0,2);
+        
+//        var date = new Date();
+//        var year = date.getFullYear();
+//        var month = date.getMonth() + 1;
         var formatedDate = moment(date).format("LL");
+        
+        
+        
         var index = 0;
         var thisWeek;
+        var newMonthAdd = month;
+        var newMonthSub = month;
+        var newYearAdd = year;
+        var newYearSub = year;
 
         var cal = new calendar.Calendar(calendar.MONDAY).monthdatescalendar(year,month);
+        if (month - 1 < 1){
+            newMonthSub = 12;
+            newYearSub = year - 1;
+        }
+        else{
+            newMonthSub--;
+            newYearSub = year;
+        }
+        var calPrev = new calendar.Calendar(calendar.MONDAY).monthdatescalendar(newYearSub,newMonthSub);
+
+        if (month + 1 > 12){
+            newMonthAdd = 1;
+            newYearAdd = year + 1;
+        }
+        else{
+            newMonthAdd++;
+            newYearAdd = year;
+        }
+
+        var calNext = new calendar.Calendar(calendar.MONDAY).monthdatescalendar(newYearAdd,newMonthAdd);
+
+        cal = cal.concat(calPrev);
+        cal = cal.concat(calNext);
 
         // get current week
         for (var x = 0; x < cal.length; x++){
             for (var j = 0; j < 7; j++){
                 cal[x][j] = moment(cal[x][j]).format("LL");
-                if(formatedDate == cal[x][j]){
+                if(parameterDate == cal[x][j]){
                     index = x;
                 }
             }
@@ -59,14 +99,13 @@ var displayPage = function(req, res){
         // 0: current, 1: prev, 2: next
         var dateParam = [];
         dateParam.push( moment(thisWeek[0]).format("L").replace("/", '').replace("/", ''));
-
         var prev = moment(thisWeek[0]).subtract(1, 'week').calendar();
         dateParam.push(moment(prev).format("L").replace("/", '').replace("/", ''));
-
         var next = moment(thisWeek[0]).add(1, 'week').calendar();
         dateParam.push(moment(next).format("L").replace("/", '').replace("/", ''));
 
-        res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam[0]});
+
+        res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam});
     });
 };
 
@@ -83,7 +122,7 @@ var displayCompletedPage = function(req, res){
 
         for(var i = 0; i < docs.length; i++){
             docs[i] = docs[i].toAPI();
-            if (docs[i].completed == true){
+            if (docs[i].completed === true){
                 completed.push(docs[i]);      
             }
         }
@@ -158,7 +197,7 @@ var clearTasks = function(req, res){
         }
 
         for(var i = 0; i < docs.length; i++){
-            if (docs[i].completed == true){
+            if (docs[i].completed === true){
                 docs[i].remove();
                 docs[i].save();    
             }
@@ -167,7 +206,7 @@ var clearTasks = function(req, res){
         res.redirect(req.get('referer'));
     });  
 
-}
+};
 
 
 var checkTask = function(req, res){
