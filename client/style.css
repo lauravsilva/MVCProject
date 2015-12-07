@@ -1,17 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat|Six+Caps);
+@import url(https://fonts.googleapis.com/css?family=Montserrat|Handlee);
 
 body {
     margin-bottom: 30px;
 }
 
 h1 {
-    font-family: 'Six Caps', sans-serif;
-    font-size: 70px;
+    font-family: 'Handlee', cursive;
+    font-size: 60px;
 }
 
 h2 {
-    font-family: 'Six Caps', sans-serif;
-    font-size: 50px;
+    font-family: 'Handlee', cursive;
+    font-size: 40px;
 }
 
 h3 {
@@ -20,13 +20,18 @@ h3 {
 
 .navbar{
     border-radius: 0;
-    font-size: 18px;
+    font-size: 16px;
     background: #895881;
     font-family: 'Montserrat', sans-serif;
 }
 
-.navbar-inverse{
+.navbar-inverse, .navbar-inverse .navbar-toggle{
     border-color: #895881;
+}
+
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #ffffff;
 }
 
 .navbar-inverse .navbar-nav>li>a{
@@ -133,12 +138,12 @@ a, a:hover {
 }
 
 .panel{
-  margin-bottom: 0;
-  margin-top: 20px;
+    margin-bottom: 0;
+    margin-top: 20px;
 }
 
 .panel-title-completed{
-  margin: 0 auto;
-  font-size: 16px;
-  display: inline-block;
+    margin: 0 auto;
+    font-size: 16px;
+    display: inline-block;
 }
