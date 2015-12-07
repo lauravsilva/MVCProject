@@ -4,7 +4,16 @@ var url = require('url');
 var moment = require('moment');
 var calendar = require('node-calendar');
 
-var util = require('../utilities');
+moment.locale('en', {
+    calendar : {
+        lastDay : 'L',
+        sameDay : 'L',
+        nextDay : 'L',
+        lastWeek : 'L',
+        nextWeek : 'L',
+        sameElse : 'L'
+    }
+});
 
 var Task = models.Task;
 
@@ -104,7 +113,6 @@ var displayPage = function(req, res){
         dateParam.push(moment(prev).format("L").replace("/", '').replace("/", ''));
         var next = moment(thisWeek[0]).add(1, 'week').calendar();
         dateParam.push(moment(next).format("L").replace("/", '').replace("/", ''));
-
 
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam});
     });

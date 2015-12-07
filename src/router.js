@@ -1,6 +1,5 @@
 var controllers = require('./controllers');
 var mid = require('./middleware');
-var util = require('./utilities');
 
 var router = function(app) {
     app.get("/login", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
