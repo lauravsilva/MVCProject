@@ -43,6 +43,7 @@ var displayPage = function(req, res){
 
         var cal = new calendar.Calendar(calendar.MONDAY).monthdatescalendar(year,month);
 
+        // get current week
         for (var x = 0; x < cal.length; x++){
             for (var j = 0; j < 7; j++){
                 cal[x][j] = moment(cal[x][j]).format("LL");
@@ -54,7 +55,18 @@ var displayPage = function(req, res){
 
         thisWeek = cal[index];
 
-        res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek});
+
+        // 0: current, 1: prev, 2: next
+        var dateParam = [];
+        dateParam.push( moment(thisWeek[0]).format("L").replace("/", '').replace("/", ''));
+
+        var prev = moment(thisWeek[0]).subtract(1, 'week').calendar();
+        dateParam.push(moment(prev).format("L").replace("/", '').replace("/", ''));
+
+        var next = moment(thisWeek[0]).add(1, 'week').calendar();
+        dateParam.push(moment(next).format("L").replace("/", '').replace("/", ''));
+
+        res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam[0]});
     });
 };
 
@@ -79,7 +91,6 @@ var displayCompletedPage = function(req, res){
         res.render('completedTasks', {csrfToken: req.csrfToken(), completedTasks: completed});
     });
 };
-
 
 
 var makeTask = function(req, res){
@@ -137,6 +148,7 @@ var removeTask = function(req, res){
 
 };
 
+
 var clearTasks = function(req, res){
 
     Task.TaskModel.findByOwner(req.session.account._id, function(err, docs) {
@@ -156,6 +168,7 @@ var clearTasks = function(req, res){
     });  
 
 }
+
 
 var checkTask = function(req, res){
 
@@ -186,6 +199,7 @@ var editPage = function(req, res){
         res.render('editTask', {csrfToken: req.csrfToken(), t: doc});
     });
 };
+
 
 var editTask = function(req, res){
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){

@@ -46,7 +46,7 @@ h3 {
     float: left;
     margin-right: 20px;
     font-size: 12px;
-    background-color: #6ac9cd;
+    background-color: #895881;
     width: 20px;
     padding: 5px 5px;
     border-radius: 20px;
@@ -146,4 +146,25 @@ a, a:hover {
     margin: 0 auto;
     font-size: 16px;
     display: inline-block;
+}
+
+.left-arrow{
+    float: left;
+}
+
+.right-arrow{
+    float: right;
+}
+
+.left-arrow, .right-arrow{
+    font-family: 'Handlee', cursive;
+    display: inline-block;
+    font-size: 50px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.left-arrow:hover, .right-arrow:hover{
+    text-decoration: none;
+    color: #6ac9cd;
 }
