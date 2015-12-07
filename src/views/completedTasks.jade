@@ -23,17 +23,22 @@ block body
 
       
     .container
-    
-      button.btn.btn-default#back(type='submit')  Back
+      h2.text-center Completed Tasks
       
-      each day in calendar
-          h3 #{day}
-          br
-            
-      button.btn.btn-default#next(type='submit')  Next
-
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title-completed Total: #{completedTasks.length}
+          if completedTasks.length > 0
+            span.clear
+              a(href="/clearTasks") clear
+        ul.list-group    
+          each task in completedTasks
+            li.list-group-item
+              h4.list-group-item-completed #{task.date}: #{task.name}
+                
+      
 
 block scripts
-  script(src="/assets/calendar.js")
+  script(src="/assets/maker.js")
   
   

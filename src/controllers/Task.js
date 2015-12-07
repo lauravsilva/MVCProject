@@ -58,6 +58,30 @@ var displayPage = function(req, res){
     });
 };
 
+
+var displayCompletedPage = function(req, res){
+
+    var completed = [];
+
+    Task.TaskModel.findByOwner(req.session.account._id, function(err, docs) {
+        if (err) {
+            console.log(err);
+            return res.status(400).json({error: "An error occurred"});
+        }
+
+        for(var i = 0; i < docs.length; i++){
+            docs[i] = docs[i].toAPI();
+            if (docs[i].completed == true){
+                completed.push(docs[i]);      
+            }
+        }
+
+        res.render('completedTasks', {csrfToken: req.csrfToken(), completedTasks: completed});
+    });
+};
+
+
+
 var makeTask = function(req, res){
 
     if(!req.body.name || !req.body.importance || !req.body.date) {
@@ -113,6 +137,26 @@ var removeTask = function(req, res){
 
 };
 
+var clearTasks = function(req, res){
+
+    Task.TaskModel.findByOwner(req.session.account._id, function(err, docs) {
+        if (err) {
+            console.log(err);
+            return res.status(400).json({error: "An error occurred"});
+        }
+
+        for(var i = 0; i < docs.length; i++){
+            if (docs[i].completed == true){
+                docs[i].remove();
+                docs[i].save();    
+            }
+        }
+
+        res.redirect(req.get('referer'));
+    });  
+
+}
+
 var checkTask = function(req, res){
 
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
@@ -161,5 +205,7 @@ module.exports.make = makeTask;
 module.exports.editPage = editPage;
 module.exports.edit = editTask;
 module.exports.removeTask = removeTask;
+module.exports.clearTasks = clearTasks;
 module.exports.checkTask = checkTask;
 module.exports.displayPage = displayPage;
+module.exports.displayCompletedPage = displayCompletedPage;

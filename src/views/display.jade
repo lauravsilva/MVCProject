@@ -63,15 +63,11 @@ block body
       
       h3.text-center Total Tasks Remaining: #{incomplete}
       
-      .panel.panel-default
-        ul.list-group    
-          li.list-group-item
-            each completedTask in tasks
-              if completedTask.completed == true
-                - complete++
-                h4 #{completedTask.name}
-        .panel-heading
-          h3.panel-title Total Tasks Completed: #{complete}
+      br
+      br
+      
+      a.buttonlink(href='/completedTasks')
+        button.btn.btn-default.center-block(type='submit')  View completed tasks
       
 
 block scripts
