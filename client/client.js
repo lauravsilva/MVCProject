@@ -60,6 +60,28 @@ $(document).ready(function() {
         return false;
     });
     
+    
+    $("#pwChangeSubmit").on("click", function(e) {
+        e.preventDefault();
+    
+        if($("#oldpass").val() == '' || $("#newpass").val() == '' || $("#newpass2").val() == ''){
+            $("#errorAlert").show();
+            handleError("Oops! All fields are required");
+            return false;
+        }
+        
+        if($("#newpass").val() !== $("#newpass2").val()) {
+            $("#errorAlert").show();
+            handleError("Passwords do not match :(");
+            return false;           
+        }
+
+        sendAjax($("#pwChangeForm").attr("action"), $("#pwChangeForm").serialize());
+        
+        return false;
+    });
+    
+    
     $("#cancel").on("click", function(e) {
         history.go(-1);
     });

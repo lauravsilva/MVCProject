@@ -23,18 +23,45 @@ block body
 
       
     .container
-      #errorAlert
-        .alert.alert-danger(role='alert')
-          span#errorMessage
-      
+
       section#profile
         h2 Profile        
         .panel.panel-default
           .panel-heading
-            h3.panel-title Welcome, #{search.name}!
+            h3.panel-title Account
           ul.list-group    
             li.list-group-item
-              p.list-group-item-heading Username: #{search.username}
-  
+              .form-group
+                label(for="name") Name: 
+                input.form-control(type="text", name="name", placeholder="#{search.name}" readonly)
+              .form-group
+                label(for="username") Username: 
+                input.form-control(type="text", name="username", placeholder="#{search.username}" readonly)
+              
+          .panel-heading
+            h3.panel-title Password
+          ul.list-group
+            li.list-group-item  
+              #errorAlert
+                .alert.alert-danger(role='alert')
+                  span#errorMessage
+              form#pwChangeForm.col-md-4(class="mainForm", name="pwChangeForm", action="/profile", method="POST")
+                #errorAlert
+                    .alert.alert-danger(role='alert')
+                        span#errorMessage
+                .form-group
+                    label(for="oldpass") Current Password: 
+                    input.form-control#oldpass(type="password", name="oldpass", placeholder="Current Password")
+                .form-group
+                    label(for="newpass") New Password: 
+                    input.form-control#newpass(type="password", name="newpass", placeholder="Password")
+                .form-group
+                    label(for="newpass2") Verify Password: 
+                    input.form-control#newpass2(type="password", name="newpass2", placeholder="Verify password")
+                input(type="hidden", name="_csrf", value="#{csrfToken}")
+                button.btn.btn-default#pwChangeSubmit.formSubmit(type='submit') Change Password
+                button.btn.btn-default#cancel(type='submit')  Cancel
+
 block scripts
   script(src="/assets/maker.js")
+  script(src="/assets/client.js")

@@ -113,8 +113,11 @@ var displayPage = function(req, res){
         dateParam.push(moment(prev).format("L").replace("/", '').replace("/", ''));
         var next = moment(thisWeek[0]).add(1, 'week').calendar();
         dateParam.push(moment(next).format("L").replace("/", '').replace("/", ''));
+        
+        // Get today's date in parameter form
+    var today = moment().format("L").replace("/", '').replace("/", '');
 
-        res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam});
+        res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam, todaysDate: today});
     });
 };
 

@@ -12,6 +12,7 @@ var signupPage = function(req, res){
 
 var profilePage = function(req, res){
 
+    console.log("in profile page");
     Account.AccountModel.findUserInfo(req.session.account._id, function(err, docs) {
         if (err) {
             console.log(err);
@@ -78,9 +79,44 @@ var signup = function(req, res){
     });
 };
 
+var changePassword = function(req, res){
+    
+    console.log("in change pw");
+
+    if(!req.body.newpass || !req.body.newpass2 || !req.body.oldpass){
+        return res.status(400).json({error: "Oops! All fields are required"});
+    }
+
+    if(req.body.newpass !== req.body.newpass2){
+        return res.status(400).json({error: "Passwords do not match :("});
+    }
+
+
+    Account.AccountModel.authenticate(req.session.account._id, req.body.oldpass, function(err, account) {
+        if (err || !account){
+            return res.status(401).json({error: "Current password is incorrect"});
+        }
+
+        console.log("authenticate");
+
+        if(req.body.newpass == req.body.newpass2){
+            account.password = req.body.newpass;
+            account.save();
+            console.log("new password saved");
+        }
+
+
+        res.render('profile', {search: req.session.account});
+
+
+    });
+
+};
+
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signupPage = signupPage;
 module.exports.signup = signup;
 module.exports.profilePage = profilePage;
+module.exports.changePassword = changePassword;

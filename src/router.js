@@ -13,11 +13,12 @@ var router = function(app) {
     app.post("/editTask/:id", mid.requiresLogin, controllers.Task.edit);
     app.get("/removeTask/:id", mid.requiresLogin, controllers.Task.removeTask);
     app.get("/clearTasks", mid.requiresLogin, controllers.Task.clearTasks);
-  app.get("/checkTask/:id", mid.requiresLogin, controllers.Task.checkTask);
+    app.get("/checkTask/:id", mid.requiresLogin, controllers.Task.checkTask);
     app.get("/display", mid.requiresLogin, controllers.Task.displayPage);
     app.get("/display/:dateParam", mid.requiresLogin, controllers.Task.displayPage);
-  app.get("/completedTasks", mid.requiresLogin, controllers.Task.displayCompletedPage);
-    app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);    
+    app.get("/completedTasks", mid.requiresLogin, controllers.Task.displayCompletedPage);
+    app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);
+    app.post("/profile", mid.requiresLogin, controllers.Account.changePassword);
     app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 
