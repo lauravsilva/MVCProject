@@ -61,7 +61,7 @@ TaskSchema.statics.findByOwner = function(ownerId, callback) {
         owner: mongoose.Types.ObjectId(ownerId)
     };
 
-    return TaskModel.find(search).sort('date').select("name importance date completed").exec(callback);
+    return TaskModel.find(search).sort({date: 1, importance: -1}).select("name importance date completed").exec(callback);
 };
 
 
