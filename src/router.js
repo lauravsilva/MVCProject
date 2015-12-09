@@ -17,8 +17,8 @@ var router = function(app) {
     app.get("/display", mid.requiresLogin, controllers.Task.displayPage);
     app.get("/display/:dateParam", mid.requiresLogin, controllers.Task.displayPage);
     app.get("/completedTasks", mid.requiresLogin, controllers.Task.displayCompletedPage);
-    app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);
     app.post("/profile", mid.requiresLogin, controllers.Account.changePassword);
+    app.get("/profile", mid.requiresLogin, controllers.Account.profilePage);
     app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

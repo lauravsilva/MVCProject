@@ -32,9 +32,9 @@ block body
     
       if todaysDate != currentWeek[0]
           a(href='/display/#{todaysDate}')
-            p.text-center Jump to this week
+            p.text-center Jump to today
       else
-        p.text-center Current Week
+        p.text-center Today
         
         
       a.left-arrow(href='/display/#{currentWeek[1]}') <

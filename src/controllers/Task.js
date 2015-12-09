@@ -150,12 +150,6 @@ var makeTask = function(req, res){
         return res.status(400).json({error: "Oops! All fields are required"});
     }
 
-    //    var today = moment(new Date()).format("L");
-    //    var inputDate = req.body.date
-    //    if(moment(inputDate).format("L") < today){
-    //        return res.status(400).json({error: "Make sure the task you're creating is for the future!"});
-    //    }
-
     if(req.body.importance < 1 || req.body.importance > 3){
         return res.status(400).json({error: "Oops! Importance must be between 1 and 3"});
     }
@@ -246,6 +240,7 @@ var editPage = function(req, res){
         }
 
         doc = doc.toAPI();
+        doc.date = moment(doc.date).format("L");
 
         res.render('editTask', {csrfToken: req.csrfToken(), t: doc});
     });
@@ -254,6 +249,14 @@ var editPage = function(req, res){
 
 var editTask = function(req, res){
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
+
+        if(!req.body.name || !req.body.importance || !req.body.date) {
+            return res.status(400).json({error: "Oops! All fields are required"});
+        }
+
+        if(req.body.importance < 1 || req.body.importance > 3){
+            return res.status(400).json({error: "Oops! Importance must be between 1 and 3"});
+        }
 
         doc.name = req.body.name;
         doc.importance = req.body.importance;
@@ -264,10 +267,6 @@ var editTask = function(req, res){
     });
 };
 
-
-var sortTasksPriority = function(req, res){
-    
-}
 
 module.exports.makerPage = makerPage;
 module.exports.make = makeTask;
