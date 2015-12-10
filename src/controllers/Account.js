@@ -114,7 +114,7 @@ var changePassword = function(req, res){
                account.save();
                console.log("new password saved");
             });
-         };
+         }
 
          res.json({redirect: '/profile'});
 

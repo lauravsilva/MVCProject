@@ -50,7 +50,7 @@ TaskSchema.methods.toAPI = function() {
     return {
         name: this.name,
         importance: this.importance,
-        date: moment(this.date).format("LL"),
+        date: moment(this.date).format("ll"),
         completed: this.completed,
         _id: this._id
     };

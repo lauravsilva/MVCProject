@@ -53,9 +53,9 @@ var displayPage = function(req, res){
         }
 
 
-        //Format parameter date back to "LL"
+        //Format parameter date back to "ll"
         var parameterDate = req.params.dateParam.substring(0,2) + "/" + req.params.dateParam.substring(2,4) + "/" + req.params.dateParam.substring(4,8);
-        parameterDate = moment(parameterDate).format("LL");
+        parameterDate = moment(parameterDate).format("ll");
 
         // Calendar
         year = req.params.dateParam.substring(4,8);
@@ -95,7 +95,7 @@ var displayPage = function(req, res){
         // Get current week
         for (var x = 0; x < cal.length; x++){
             for (var j = 0; j < 7; j++){
-                cal[x][j] = moment(cal[x][j]).format("LL");
+                cal[x][j] = moment(cal[x][j]).format("ll");
                 if(parameterDate == cal[x][j]){
                     index = x;
                 }
