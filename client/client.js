@@ -75,8 +75,8 @@ $(document).ready(function() {
             handleError("Passwords do not match :(");
             return false;           
         }
-
-        sendAjax($("#pwChangeForm").attr("action"), $("#pwChangeForm").serialize());
+        
+        sendAjax($('#pwChangeForm').attr("action"), $("#pwChangeForm").serialize());
         
         return false;
     });

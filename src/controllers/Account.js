@@ -11,9 +11,7 @@ var signupPage = function(req, res){
 };
 
 var profilePage = function(req, res){
-
-   console.log("in profile page");
-   
+    
    Account.AccountModel.findByUsername(req.session.account.username, function(err, doc) {
       if (err) {
          console.log(err);
@@ -22,7 +20,7 @@ var profilePage = function(req, res){
       
       doc = doc.toAPI();
 
-      res.render('profile', {profileInfo: doc});
+      res.render('profile', {profileInfo: doc, csrfToken: req.csrfToken() });
    });
 };
 
@@ -83,9 +81,6 @@ var signup = function(req, res){
 };
 
 var changePassword = function(req, res){
-
-   console.log("in change pw");
-
    Account.AccountModel.findByUsername(req.session.account.username, function(err, doc) {
       if (err) {
          console.log(err);
@@ -100,23 +95,20 @@ var changePassword = function(req, res){
          return res.status(400).json({error: "Passwords do not match :("});
       }
       
-      Account.AccountModel.authenticate(req.session.account._id, req.body.oldpass, function(err, account) {
+      Account.AccountModel.authenticate(req.session.account.username, req.body.oldpass, function(err, account) {
          if (err || !account){
             return res.status(401).json({error: "Current password is incorrect"});
          }
-
-         console.log("authenticate");
 
          if(req.body.newpass == req.body.newpass2){
             Account.AccountModel.generateHash(req.body.newpass, function(salt, hash){
                account.salt = salt;
                account.password = hash;
                account.save();
-               console.log("new password saved");
             });
          }
 
-         res.json({redirect: '/profile'});
+         res.json({redirect: '/profile', csrfToken: req.csrfToken() });
 
       });
    });

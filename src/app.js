@@ -35,7 +35,7 @@ if(process.env.REDISCLOUD_URL){
 
 //pull in our routes
 var router = require('./router.js');
-var port = process.env.PORT || process.env.NODE_PORT || 3000;
+var port = process.env.PORT || process.env.NODE_PORT || 3001;
 
 
 

@@ -42,7 +42,7 @@ block body
             h3.panel-title Password
           ul.list-group
             li.list-group-item
-               form#pwChangeForm(class="mainForm", name="pwChangeForm", action="", method="POST")
+               form#pwChangeForm(class="mainForm", name="pwChangeForm", action="/profile", method="POST")
                   #errorAlert
                      .alert.alert-danger(role='alert')
                         span#errorMessage
@@ -55,11 +55,10 @@ block body
                   .form-group
                      label(for="newpass2") Verify Password: 
                      input.form-control#newpass2(type="password", name="newpass2", placeholder="Verify password")
+                  input(type="hidden", name="_csrf", value="#{csrfToken}")
                   button.btn.btn-default#pwChangeSubmit.formSubmit(type='submit') Change Password
                   button.btn.btn-default#cancel(type='submit')  Cancel
                   
-                  
-                  a(href='/changePass') CHANGE PASS
 
 block scripts
   script(src="/assets/maker.js")
