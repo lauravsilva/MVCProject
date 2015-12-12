@@ -59,15 +59,15 @@ block body
                     if t.completed == false
                       - incomplete++
                       div.icons
-                        a.delete(href="/removeTask/#{t._id}") &#x2716
-                        a.edit(href="/editTask/#{t._id}") &#x270E
+                        a.delete(href="/removeTask/#{t._id}" title="Delete task") &#x2716
+                        a.edit(href="/editTask/#{t._id}" title="Edit task") &#x270E
                       span.check
-                        a(href="/checkTask/#{t._id}") &#x2714
-                      span.badge #{t.importance}
+                        a(href="/checkTask/#{t._id}" title="Mark as complete") &#x279C
+                      span.badge(title="Importance") #{t.importance}
                       h4.list-group-item-heading #{t.name}
                     else
                       div.icons
-                      span.check &#x279C
+                      span.check &#x2714
                       span.badge.gray #{t.importance}
                       h4.list-group-item-heading.strike #{t.name}
 

@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-    
+
     function handleError(message) {
         $("#errorMessage").text(message);
         $("#errorAlert").show();
@@ -37,6 +37,13 @@ $(document).ready(function() {
             handleError("Oops! All fields are required");
             return false;
         }
+
+        if(/^[a-zA-Z0-9- ]*$/.test($("#taskName").val()) == false) {
+            $("#errorAlert").show();
+            handleError("Your task name cannot contain special characters");
+            return false;
+        }
+
 
         sendAjax($("#taskForm").attr("action"), $("#taskForm").serialize());
 

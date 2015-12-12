@@ -39,8 +39,8 @@ var displayPage = function(req, res){
         var date, year, month, thisWeek;
         var index = 0;
 
-        // If no parameters on URL, use today's date
-        if (!req.params.dateParam){
+        // If no parameters on URL or not in MMDDYYY form, use today's date
+        if (!req.params.dateParam || req.params.dateParam.length != 8){
             date = new Date();
             var formatedDate = moment(date).format("L");
             req.params.dateParam = formatedDate.replace("/", '').replace("/", '');
@@ -56,6 +56,7 @@ var displayPage = function(req, res){
         }
 
 
+        
         //Format parameter date back to "ll"
         var parameterDate = req.params.dateParam.substring(0,2) + "/" + req.params.dateParam.substring(2,4) + "/" + req.params.dateParam.substring(4,8);
         parameterDate = moment(parameterDate).format("ll");

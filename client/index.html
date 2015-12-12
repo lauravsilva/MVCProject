@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link rel="shortcut icon" href="img/favicon.ico"/>
-        
+
         <title>Pending Documentation</title>
 
         <!-- Bootstrap -->
@@ -31,8 +31,9 @@
         <div class="container">
             <h1 class="text-center">Pending</h1>
             <h3 class="text-center">Documentation</h3>
-
-
+            <br/>
+            <a class="buttonlink" href="https://github.com/lauravsilva/MVCProject"><button class="btn btn-default center-block">GitHub</button></a>
+            
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
@@ -40,8 +41,17 @@
                             <h3 class="panel-title">Overview</h3>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item">
+                            <li class="list-group-item documentation">
                                 <p><strong>Pending is a calendar-based task manager web application. </strong> It is a multi-user platform, where a user can create an account and new tasks. Tasks can be checked off, edited or deleted. These are displayed in a weekly calendar view, and it keeps track of how many tasks are still pending for the week which runs Monday through Sunday. </p>
+                            </li>
+                        </ul>
+                        
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Technology</h3>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item documentation">
+                                <p>This is a multi-user system with the use of log-ins. The client is a web browser, created with HTML5, CSS3, JavaScript, and a CSS framework. The server was created using Node.js. Log-in information and user-created tasks are stored in a Mongo database. This application is responsive with three breakpoints (mobile, tablet and desktop).</p>
                             </li>
                         </ul>
 
@@ -49,8 +59,9 @@
                             <h3 class="panel-title">Post-Mortem</h3>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item">
-                                <p>I am very satisfied with the outcome of the project; it is an application that I could see myself continue to work on after this class in order to keep improving it and making it into something I can use daily to replace my handwritten list. The beginning of the process was a little bumpy because I was trying to wrap my head around MVC. It was helpful to use Domomaker as starter files, and build my app off of that. I think I can improve efficiency, and better error checking (for instance, if an invalid date is entered on the URL). If I were to do this again, I would create a functional document with all the requirements and functionality I hope to implement in order to stay focused on the scope, rather than try to add pieces here and there when they come to mind. </p>
+                            <li class="list-group-item documentation">
+                                <p>I am satisfied with the outcome of the project; it is an application that I could see myself continue to work on after this class in order to keep improving it and making it into something I can use daily to replace my handwritten lists. The beginning of the process was a little bumpy because I was trying to wrap my head around MVC. It was helpful to use Domomaker as starter files, and build my app off of that. I think I can improve efficiency, and better error checking (for instance, if an invalid date is entered on the URL). I also have one very large function that could've been broken down. If I were to do this again, I would create a functional document with all the requirements and functionality I hope to implement in order to stay focused on the scope, rather than try to add pieces here and there when they come to mind.
+                                </p>
 
                                 <p>In a previous class, I worked on a similar team project using Django except that I only created templates for the MTV architecture. This time around, I really enjoyed having the ability to work more on the backend and understand how all the parts and pieces come together. </p>
                             </li>
@@ -60,16 +71,16 @@
                             <h3 class="panel-title">High-level Design</h3>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item">
-                                <img src="img/architecturediagram.png" alt="Architecture Diagram"/>
+                            <li class="list-group-item documentation">
+                                <img src="img/architecturediagram.png" class="center-block" alt="Architecture Diagram"/>
                             </li>
                         </ul>
-                        
+
                         <div class="panel-heading">
                             <h3 class="panel-title">Libraries</h3>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item">
+                            <li class="list-group-item documentation">
                                 <ul>
                                     <li><a href="http://getbootstrap.com/">Bootstrap</a></li>
                                     <li><a href="http://momentjs.com/">Moment</a></li>
@@ -78,17 +89,12 @@
                                 </ul>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
         </div>
-        </div>
 
-
-    </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+    </body>
 </html>
