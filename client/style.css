@@ -99,13 +99,13 @@ h3 {
 .plus{
     margin: 20px auto;
     float: none;
-    width: 60px;
-    padding: 8px 40px 8px 13px;
-    vertical-align: middle;
-    background-color: #6ac9cd;
-    border-radius: 50px;
-    color: #ffffff;
     font-size: 40px;
+    background-color: #6ac9cd;
+    color: #ffffff;
+    width: 60px;
+    padding: 6px 6px;
+    border-radius: 30px;
+
 }
 
 .plus a{

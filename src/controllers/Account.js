@@ -2,14 +2,17 @@ var models = require('../models');
 
 var Account = models.Account;
 
+// render log in page
 var loginPage = function(req, res){
     res.render('login', { csrfToken: req.csrfToken() });
 };
 
+// render sign up page
 var signupPage = function(req, res){
     res.render('signup', { csrfToken: req.csrfToken() });
 };
 
+// render profile page
 var profilePage = function(req, res){
 
     Account.AccountModel.findByUsername(req.session.account.username, function(err, doc) {
@@ -24,11 +27,13 @@ var profilePage = function(req, res){
     });
 };
 
+// log out user by destroying session
 var logout = function(req, res){
     req.session.destroy();
     res.redirect('/');
 };
 
+// log in a user
 var login = function(req, res){
 
     if(!req.body.username || !req.body.pass){
@@ -46,8 +51,10 @@ var login = function(req, res){
     });
 };
 
+// account sign up
 var signup = function(req, res){
 
+    // error checking
     if(!req.body.username || !req.body.pass || !req.body.pass2 || !req.body.name){
         return res.status(400).json({error: "Oops! All fields are required"});
     }
@@ -56,11 +63,13 @@ var signup = function(req, res){
         return res.status(400).json({error: "Passwords do not match :("});
     }
 
+    // check if username already exists
     Account.AccountModel.findByUsername(req.body.username, function(err, doc){
         if(err || doc){
             return res.status(400).json({error: "Username already exists. Try again!"});
         }
 
+        //if not, create account
         Account.AccountModel.generateHash(req.body.pass, function(salt, hash){
 
             var accountData = {
@@ -86,6 +95,7 @@ var signup = function(req, res){
     });
 };
 
+// change password and redirect to profile page
 var changePassword = function(req, res){
     Account.AccountModel.findByUsername(req.session.account.username, function(err, doc) {
         if (err) {

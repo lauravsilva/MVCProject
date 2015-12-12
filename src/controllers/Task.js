@@ -4,6 +4,9 @@ var url = require('url');
 var moment = require('moment');
 var calendar = require('node-calendar');
 
+var Task = models.Task;
+
+// format special days
 moment.locale('en', {
     calendar : {
         lastDay : 'L',
@@ -15,8 +18,7 @@ moment.locale('en', {
     }
 });
 
-var Task = models.Task;
-
+// render add task page
 var makerPage = function(req, res){
 
     Task.TaskModel.findByOwner(req.session.account._id, function(err, docs) {
@@ -29,6 +31,7 @@ var makerPage = function(req, res){
     });
 };
 
+// render display page and do the work for the calendar
 var displayPage = function(req, res){
 
     Task.TaskModel.findByOwner(req.session.account._id, function(err, docs) {
@@ -36,7 +39,7 @@ var displayPage = function(req, res){
         var date, year, month, thisWeek;
         var index = 0;
 
-        // If no parameters, use today's date
+        // If no parameters on URL, use today's date
         if (!req.params.dateParam){
             date = new Date();
             var formatedDate = moment(date).format("L");
@@ -114,14 +117,21 @@ var displayPage = function(req, res){
         var next = moment(thisWeek[0]).add(1, 'week').calendar();
         dateParam.push(moment(next).format("L").replace("/", '').replace("/", ''));
 
+        
         // Get today's date in parameter form
         var today = moment().format("L").replace("/", '').replace("/", '');
       
+        
+        // tasks: all of the user's tasks
+        // calendar: this week's date in ll format (Dec 12, 2015)
+        // currentWeek: this week's date, a week before and a week after in parameter form
+        // todaysDate: today's date in parameter form
+        
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam, todaysDate: today});
     });
 };
 
-
+// render completed tasks page
 var displayCompletedPage = function(req, res){
 
     var completed = [];
@@ -132,6 +142,7 @@ var displayCompletedPage = function(req, res){
             return res.status(400).json({error: "An error occurred"});
         }
 
+        // if task is marked as completed, add to array
         for(var i = 0; i < docs.length; i++){
             docs[i] = docs[i].toAPI();
             if (docs[i].completed === true){
@@ -143,7 +154,7 @@ var displayCompletedPage = function(req, res){
     });
 };
 
-
+// add a task
 var makeTask = function(req, res){
 
     if(!req.body.name || !req.body.importance || !req.body.date) {
@@ -176,7 +187,7 @@ var makeTask = function(req, res){
 
 };
 
-
+// remove a task and refresh page
 var removeTask = function(req, res){
 
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
@@ -193,7 +204,7 @@ var removeTask = function(req, res){
 
 };
 
-
+// remove all tasks marked as completed
 var clearTasks = function(req, res){
 
     Task.TaskModel.findByOwner(req.session.account._id, function(err, docs) {
@@ -214,7 +225,7 @@ var clearTasks = function(req, res){
 
 };
 
-
+// mark task as completed
 var checkTask = function(req, res){
 
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
@@ -231,7 +242,7 @@ var checkTask = function(req, res){
 
 };
 
-
+// edit task page
 var editPage = function(req, res){
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
         if (err) {
@@ -240,13 +251,13 @@ var editPage = function(req, res){
         }
 
         doc = doc.toAPI();
-        doc.date = moment(doc.date).format("L");
+        doc.date = moment(doc.date).format("ll");
 
         res.render('editTask', {csrfToken: req.csrfToken(), t: doc});
     });
 };
 
-
+// edit existing task
 var editTask = function(req, res){
     Task.TaskModel.findOne({_id: req.params.id}, function(err, doc){
 
