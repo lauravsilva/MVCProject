@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
 
+    
     function handleError(message) {
         $("#errorMessage").text(message);
         $("#errorAlert").show();

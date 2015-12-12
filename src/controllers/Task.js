@@ -116,7 +116,7 @@ var displayPage = function(req, res){
 
         // Get today's date in parameter form
         var today = moment().format("L").replace("/", '').replace("/", '');
-
+      
         res.render('display', {csrfToken: req.csrfToken(), tasks: docs, calendar: thisWeek, currentWeek: dateParam, todaysDate: today});
     });
 };

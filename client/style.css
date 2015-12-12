@@ -47,13 +47,17 @@ h3 {
     margin-right: 20px;
     font-size: 12px;
     background-color: #895881;
-    width: 20px;
-    padding: 5px 5px;
-    border-radius: 20px;
+    width: 24px;
+    padding: 6px 6px;
+    border-radius: 24px;
+}
+
+.list-group-item>.badge.gray{
+    background-color: #a1a1a1;
 }
 
 .list-group-item{
-    padding: 20px;
+    padding: 5px 5px 20px 20px;
 }
 
 .list-group-item-heading{
@@ -65,12 +69,13 @@ h3 {
 }
 
 .icons{
-    padding: 10px 0;
+    padding: 0 0 20px;
+    box-sizing: border-box;
 }
 
 .delete, .edit{
     float: right;
-    font-size: 18px;
+    font-size: 12px;
     margin-right: 10px;
 }
 
@@ -83,8 +88,12 @@ h3 {
 
 .check{
     float: left;
-    margin-right: 60px;
+    margin-right: 20px;
     font-size: 18px;
+}
+
+.checked{
+    padding-top: 20px;
 }
 
 .plus{
@@ -188,3 +197,6 @@ a:active {
     color: #6ac9cd;
 }
 
+.strike{
+    text-decoration: line-through;
+}
