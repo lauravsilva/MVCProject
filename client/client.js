@@ -83,6 +83,6 @@ $(document).ready(function() {
     
     
     $("#cancel").on("click", function(e) {
-        history.go(-1);
+        history.back()
     });
 });

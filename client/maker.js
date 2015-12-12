@@ -44,16 +44,8 @@ $(document).ready(function() {
     });
 
 
-    $(".removeTaskSubmit").on("click", function(e) {
-        e.preventDefault();
-
-        //console.log("in remove");
-
-        return false;
-    });
-
     $("#cancel").on("click", function(e) {
-        history.go(-1);
+        history.back();
     });
 
 });
